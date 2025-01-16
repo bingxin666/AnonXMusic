@@ -177,8 +177,8 @@ class YouTubeAPI:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        ytdl_opts = {"quiet": True}
-        ydl = yt_dlp.YoutubeDL(ytdl_opts)
+        ydl_opts = {"quiet": True, "cookies": COOKIES_PATH}
+        ydl = yt_dlp.YoutubeDL(ydl_opts)
         with ydl:
             formats_available = []
             r = ydl.extract_info(link, download=False)
@@ -287,6 +287,7 @@ class YouTubeAPI:
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
                 "merge_output_format": "mp4",
+                "cookies": COOKIES_PATH,
             }
             x = yt_dlp.YoutubeDL(ydl_optssx)
             x.download([link])
@@ -308,6 +309,7 @@ class YouTubeAPI:
                         "preferredquality": "192",
                     }
                 ],
+                "cookies": COOKIES_PATH,
             }
             x = yt_dlp.YoutubeDL(ydl_optssx)
             x.download([link])
